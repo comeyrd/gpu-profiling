@@ -1,0 +1,364 @@
+{
+    "mean_tool_overhead": {
+        "memcheck": 63.256791431301785,
+        "racecheck": 1513.582734038594,
+        "initcheck": 58.699761716722904,
+        "synccheck": 58.94246365691904
+    },
+    "overhead_of_error": {
+        "BS": 0.0,
+        "CP": 961.1117262896339,
+        "DA": 0.434720420167054,
+        "DL": 9.162602893217164,
+        "OP": 178.80981872120867,
+        "RL": 1.6617231756383108,
+        "RM": 0.5297553616311275,
+        "YL": 0.8837110154579183
+    },
+    "failing": [
+        {
+            "memcheck": "b'========= COMPUTE-SANITIZER\\nRunning Kernel RL\\n========= Leaked 160,000 bytes at 0x7fd37fa00000\\n=========     Saved host backtrace up to driver entry point at allocation time\\n=========     Host Frame: [0x2d8d4f]\\n=========                in /lib/x86_64-linux-gnu/libcuda.so.1\\n=========     Host Frame:libcudart_static_5382377d5c772c9d197c0cda9fd9742ee6ad893c [0x7895e]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:libcudart_static_f74e2f2bcf2cf49bd1a61332e1d15bd1e748f9cf [0x44b13]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:cudaMalloc [0x87015]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_runtime.h:767:cudaError cudaMalloc<double>(double**, unsigned long) [0x39aba]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/kernels/flawed/src/gj-rl.cu:34:rl_kernel(GJ_Utils::GJ_Matrix*, GJ_Utils::S_Matrix*) [0x3932e]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/kernels/flawed/include/gj-rl.hpp:14:RLGaussJordan::inverse(GJ_Utils::GJ_Matrix*, GJ_Utils::S_Matrix*) const [0x2ec3b]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/main.cpp:112:do_kernel(std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<IGaussJordan>, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<IGaussJordan> > > >, int, int, bool) [0x15b61]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/usr/include/c++/11/bits/unordered_map.h:102:main [0x11abf]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:../sysdeps/nptl/libc_start_call_main.h:58:__libc_start_call_main [0x29d90]\\n=========                in /lib/x86_64-linux-gnu/libc.so.6\\n=========     Host Frame:../csu/libc-start.c:379:__libc_start_main [0x29e40]\\n=========                in /lib/x86_64-linux-gnu/libc.so.6\\n=========     Host Frame:_start [0x11fc5]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n========= \\n========= Leaked 160,000 bytes at 0x7fd37fa27200\\n=========     Saved host backtrace up to driver entry point at allocation time\\n=========     Host Frame: [0x2d8d4f]\\n=========                in /lib/x86_64-linux-gnu/libcuda.so.1\\n=========     Host Frame:libcudart_static_5382377d5c772c9d197c0cda9fd9742ee6ad893c [0x7895e]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:libcudart_static_f74e2f2bcf2cf49bd1a61332e1d15bd1e748f9cf [0x44b13]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:cudaMalloc [0x87015]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_runtime.h:767:cudaError cudaMalloc<double>(double**, unsigned long) [0x39aba]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/kernels/flawed/src/gj-rl.cu:34:rl_kernel(GJ_Utils::GJ_Matrix*, GJ_Utils::S_Matrix*) [0x3932e]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/kernels/flawed/include/gj-rl.hpp:14:RLGaussJordan::inverse(GJ_Utils::GJ_Matrix*, GJ_Utils::S_Matrix*) const [0x2ec3b]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/main.cpp:112:do_kernel(std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<IGaussJordan>, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<IGaussJordan> > > >, int, int, bool) [0x15b61]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/usr/include/c++/11/bits/unordered_map.h:102:main [0x11abf]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:../sysdeps/nptl/libc_start_call_main.h:58:__libc_start_call_main [0x29d90]\\n=========                in /lib/x86_64-linux-gnu/libc.so.6\\n=========     Host Frame:../csu/libc-start.c:379:__libc_start_main [0x29e40]\\n=========                in /lib/x86_64-linux-gnu/libc.so.6\\n=========     Host Frame:_start [0x11fc5]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n========= \\n========= Leaked 160,000 bytes at 0x7fd37fa4e400\\n=========     Saved host backtrace up to driver entry point at allocation time\\n=========     Host Frame: [0x2d8d4f]\\n=========                in /lib/x86_64-linux-gnu/libcuda.so.1\\n=========     Host Frame:libcudart_static_5382377d5c772c9d197c0cda9fd9742ee6ad893c [0x7895e]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:libcudart_static_f74e2f2bcf2cf49bd1a61332e1d15bd1e748f9cf [0x44b13]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:cudaMalloc [0x87015]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_runtime.h:767:cudaError cudaMalloc<double>(double**, unsigned long) [0x39aba]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/kernels/flawed/src/gj-rl.cu:34:rl_kernel(GJ_Utils::GJ_Matrix*, GJ_Utils::S_Matrix*) [0x3932e]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/kernels/flawed/include/gj-rl.hpp:14:RLGaussJordan::inverse(GJ_Utils::GJ_Matrix*, GJ_Utils::S_Matrix*) const [0x2ec3b]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/main.cpp:112:do_kernel(std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<IGaussJordan>, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<IGaussJordan> > > >, int, int, bool) [0x15b61]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/usr/include/c++/11/bits/unordered_map.h:102:main [0x11abf]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:../sysdeps/nptl/libc_start_call_main.h:58:__libc_start_call_main [0x29d90]\\n=========                in /lib/x86_64-linux-gnu/libc.so.6\\n=========     Host Frame:../csu/libc-start.c:379:__libc_start_main [0x29e40]\\n=========                in /lib/x86_64-linux-gnu/libc.so.6\\n=========     Host Frame:_start [0x11fc5]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n========= \\n========= Leaked 160,000 bytes at 0x7fd37fa75600\\n=========     Saved host backtrace up to driver entry point at allocation time\\n=========     Host Frame: [0x2d8d4f]\\n=========                in /lib/x86_64-linux-gnu/libcuda.so.1\\n=========     Host Frame:libcudart_static_5382377d5c772c9d197c0cda9fd9742ee6ad893c [0x7895e]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:libcudart_static_f74e2f2bcf2cf49bd1a61332e1d15bd1e748f9cf [0x44b13]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:cudaMalloc [0x87015]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_runtime.h:767:cudaError cudaMalloc<double>(double**, unsigned long) [0x39aba]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/kernels/flawed/src/gj-rl.cu:34:rl_kernel(GJ_Utils::GJ_Matrix*, GJ_Utils::S_Matrix*) [0x3932e]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/kernels/flawed/include/gj-rl.hpp:14:RLGaussJordan::inverse(GJ_Utils::GJ_Matrix*, GJ_Utils::S_Matrix*) const [0x2ec3b]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/main.cpp:112:do_kernel(std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<IGaussJordan>, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<IGaussJordan> > > >, int, int, bool) [0x15b61]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/usr/include/c++/11/bits/unordered_map.h:102:main [0x11abf]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:../sysdeps/nptl/libc_start_call_main.h:58:__libc_start_call_main [0x29d90]\\n=========                in /lib/x86_64-linux-gnu/libc.so.6\\n=========     Host Frame:../csu/libc-start.c:379:__libc_start_main [0x29e40]\\n=========                in /lib/x86_64-linux-gnu/libc.so.6\\n=========     Host Frame:_start [0x11fc5]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n========= \\n========= Leaked 160,000 bytes at 0x7fd37fa9c800\\n=========     Saved host backtrace up to driver entry point at allocation time\\n=========     Host Frame: [0x2d8d4f]\\n=========                in /lib/x86_64-linux-gnu/libcuda.so.1\\n=========     Host Frame:libcudart_static_5382377d5c772c9d197c0cda9fd9742ee6ad893c [0x7895e]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:libcudart_static_f74e2f2bcf2cf49bd1a61332e1d15bd1e748f9cf [0x44b13]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:cudaMalloc [0x87015]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/usr/local/cuda/bin/../targets/x86_64-linux/include/cuda_runtime.h:767:cudaError cudaMalloc<double>(double**, unsigned long) [0x39aba]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/kernels/flawed/src/gj-rl.cu:34:rl_kernel(GJ_Utils::GJ_Matrix*, GJ_Utils::S_Matrix*) [0x3932e]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/kernels/flawed/include/gj-rl.hpp:14:RLGaussJordan::inverse(GJ_Utils::GJ_Matrix*, GJ_Utils::S_Matrix*) const [0x2ec3b]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/home/ecomeyr/research/gj-gpu-benchmark/main.cpp:112:do_kernel(std::unordered_map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::shared_ptr<IGaussJordan>, std::hash<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::equal_to<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::shared_ptr<IGaussJordan> > > >, int, int, bool) [0x15b61]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:/usr/include/c++/11/bits/unordered_map.h:102:main [0x11abf]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n=========     Host Frame:../sysdeps/nptl/libc_start_call_main.h:58:__libc_start_call_main [0x29d90]\\n=========                in /lib/x86_64-linux-gnu/libc.so.6\\n=========     Host Frame:../csu/libc-start.c:379:__libc_start_main [0x29e40]\\n=========                in /lib/x86_64-linux-gnu/libc.so.6\\n=========     Host Frame:_start [0x11fc5]\\n=========                in /home/ecomeyr/research/gpu-profiling/gaussjordan\\n========= \\nRunning Kernel DL\\nRunning Kernel DA\\nRunning Kernel YL\\nRunning Kernel CP\\nRunning Kernel RM\\nRunning Kernel OP\\nRunning Kernel BS\\nKernel BS elapsed = 40.2204 ms ~Error = 2.57929e+06 #Repetitions = 5 Matrix Size = 100\\nKernel OP elapsed = 64.8372 ms ~Error = 2.57929e+06 #Repetitions = 5 Matrix Size = 100\\nKernel RM elapsed = 39.467 ms ~Error = 2.57929e+06 #Repetitions = 5 Matrix Size = 100\\nKernel CP elapsed = 107.718 ms ~Error = -nan #Repetitions = 5 Matrix Size = 100\\nKernel YL elapsed = 40.1619 ms ~Error = -nan #Repetitions = 5 Matrix Size = 100\\nKernel DA elapsed = 39.451 ms ~Error = 2.57929e+06 #Repetitions = 5 Matrix Size = 100\\nKernel DL elapsed = 45.7587 ms ~Error = 2.57929e+06 #Repetitions = 5 Matrix Size = 100\\nKernel RL elapsed = 39.4205 ms ~Error = 2.57929e+06 #Repetitions = 5 Matrix Size = 100\\n========= LEAK SUMMARY: 800000 bytes leaked in 5 allocations\\n========= ERROR SUMMARY: 5 errors\\n'"
+        },
+        {
+            "racecheck": "b'========= COMPUTE-SANITIZER\\nRunning Kernel RL\\nRunning Kernel DL\\nRunning Kernel DA\\nRunning Kernel YL\\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Error: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\n========= Warning: Race reported between Read access at 0x110 in yl_fixRow(double *, int, int)\\n=========     and Write access at 0x140 in yl_fixRow(double *, int, int) [8 hazards]\\n========= \\nRunning Kernel CP\\nRunning Kernel RM\\nRunning Kernel OP\\nRunning Kernel BS\\nKernel BS elapsed = 1071.14 ms ~Error = 491.92 #Repetitions = 5 Matrix Size = 100\\nKernel OP elapsed = 126.048 ms ~Error = 491.92 #Repetitions = 5 Matrix Size = 100\\nKernel RM elapsed = 1083.3 ms ~Error = 491.92 #Repetitions = 5 Matrix Size = 100\\nKernel CP elapsed = 2047.18 ms ~Error = -nan #Repetitions = 5 Matrix Size = 100\\nKernel YL elapsed = 1063.54 ms ~Error = -nan #Repetitions = 5 Matrix Size = 100\\nKernel DA elapsed = 1026.67 ms ~Error = 491.92 #Repetitions = 5 Matrix Size = 100\\nKernel DL elapsed = 1072.81 ms ~Error = 491.92 #Repetitions = 5 Matrix Size = 100\\nKernel RL elapsed = 1096.18 ms ~Error = 491.92 #Repetitions = 5 Matrix Size = 100\\n========= RACECHECK SUMMARY: 100 hazards displayed (386 errors, 114 warnings)\\n'"
+        },
+        {
+            "initcheck": "b'========= COMPUTE-SANITIZER\\nRunning Kernel RL\\nRunning Kernel DL\\nRunning Kernel DA\\nRunning Kernel YL\\nRunning Kernel CP\\nRunning Kernel RM\\nRunning Kernel OP\\nRunning Kernel BS\\nKernel BS elapsed = 34.9492 ms ~Error = 7.65893e+07 #Repetitions = 5 Matrix Size = 100\\nKernel OP elapsed = 47.7283 ms ~Error = 7.65893e+07 #Repetitions = 5 Matrix Size = 100\\nKernel RM elapsed = 32.351 ms ~Error = 7.65893e+07 #Repetitions = 5 Matrix Size = 100\\nKernel CP elapsed = 106.179 ms ~Error = 2.48195 #Repetitions = 5 Matrix Size = 100\\nKernel YL elapsed = 33.0677 ms ~Error = -nan #Repetitions = 5 Matrix Size = 100\\nKernel DA elapsed = 34.2322 ms ~Error = 7.65893e+07 #Repetitions = 5 Matrix Size = 100\\nKernel DL elapsed = 33.7469 ms ~Error = 7.65893e+07 #Repetitions = 5 Matrix Size = 100\\nKernel RL elapsed = 62.0094 ms ~Error = 7.65893e+07 #Repetitions = 5 Matrix Size = 100\\n========= ERROR SUMMARY: 0 errors\\n'"
+        },
+        {
+            "synccheck": "b'========= COMPUTE-SANITIZER\\nRunning Kernel RL\\nRunning Kernel DL\\nRunning Kernel DA\\nRunning Kernel YL\\nRunning Kernel CP\\nRunning Kernel RM\\nRunning Kernel OP\\nRunning Kernel BS\\nKernel BS elapsed = 34.6855 ms ~Error = 342428 #Repetitions = 5 Matrix Size = 100\\nKernel OP elapsed = 44.7172 ms ~Error = 342428 #Repetitions = 5 Matrix Size = 100\\nKernel RM elapsed = 34.3355 ms ~Error = 342428 #Repetitions = 5 Matrix Size = 100\\nKernel CP elapsed = 100.463 ms ~Error = 2.50972 #Repetitions = 5 Matrix Size = 100\\nKernel YL elapsed = 34.8355 ms ~Error = -nan #Repetitions = 5 Matrix Size = 100\\nKernel DA elapsed = 34.2982 ms ~Error = 342428 #Repetitions = 5 Matrix Size = 100\\nKernel DL elapsed = 33.2052 ms ~Error = 342428 #Repetitions = 5 Matrix Size = 100\\nKernel RL elapsed = 61.636 ms ~Error = 342428 #Repetitions = 5 Matrix Size = 100\\n========= ERROR SUMMARY: 0 errors\\n'"
+        }
+    ],
+    "baseline": {
+        "BS": {
+            "e_stats": {
+                "elapsed": 0.5388160347938538
+            },
+            "mean_err": 23570.98386434002,
+            "repetitions": 5,
+            "size": 100
+        },
+        "CP": {
+            "e_stats": {
+                "elapsed": 5.717440128326416
+            },
+            "mean_err": null,
+            "repetitions": 5,
+            "size": 100
+        },
+        "DA": {
+            "e_stats": {
+                "elapsed": 0.5411583781242371
+            },
+            "mean_err": 23570.98386434002,
+            "repetitions": 5,
+            "size": 100
+        },
+        "DL": {
+            "e_stats": {
+                "elapsed": 0.5881856083869934
+            },
+            "mean_err": 23570.98386434002,
+            "repetitions": 5,
+            "size": 100
+        },
+        "OP": {
+            "e_stats": {
+                "elapsed": 1.5022720098495483
+            },
+            "mean_err": 23570.98386434002,
+            "repetitions": 5,
+            "size": 100
+        },
+        "RL": {
+            "e_stats": {
+                "elapsed": 0.5477696657180786
+            },
+            "mean_err": 23570.98386434002,
+            "repetitions": 5,
+            "size": 100
+        },
+        "RM": {
+            "e_stats": {
+                "elapsed": 0.5416704416275024
+            },
+            "mean_err": 23570.98386434002,
+            "repetitions": 5,
+            "size": 100
+        },
+        "YL": {
+            "e_stats": {
+                "elapsed": 0.5435776114463806
+            },
+            "mean_err": null,
+            "repetitions": 5,
+            "size": 100
+        }
+    },
+    "sanitizers": {
+        "memcheck": {
+            "BS": {
+                "e_stats": {
+                    "elapsed": 40.220394134521484
+                },
+                "mean_err": 2579286.225548773,
+                "repetitions": 5,
+                "size": 100
+            },
+            "CP": {
+                "e_stats": {
+                    "elapsed": 107.7178955078125
+                },
+                "mean_err": null,
+                "repetitions": 5,
+                "size": 100
+            },
+            "DA": {
+                "e_stats": {
+                    "elapsed": 39.45098876953125
+                },
+                "mean_err": 2579286.225548773,
+                "repetitions": 5,
+                "size": 100
+            },
+            "DL": {
+                "e_stats": {
+                    "elapsed": 45.758670806884766
+                },
+                "mean_err": 2579286.225548773,
+                "repetitions": 5,
+                "size": 100
+            },
+            "OP": {
+                "e_stats": {
+                    "elapsed": 64.837158203125
+                },
+                "mean_err": 2579286.225548773,
+                "repetitions": 5,
+                "size": 100
+            },
+            "RL": {
+                "e_stats": {
+                    "elapsed": 39.42048263549805
+                },
+                "mean_err": 2579286.225548773,
+                "repetitions": 5,
+                "size": 100
+            },
+            "RM": {
+                "e_stats": {
+                    "elapsed": 39.46698760986328
+                },
+                "mean_err": 2579286.225548773,
+                "repetitions": 5,
+                "size": 100
+            },
+            "YL": {
+                "e_stats": {
+                    "elapsed": 40.16193389892578
+                },
+                "mean_err": null,
+                "repetitions": 5,
+                "size": 100
+            }
+        },
+        "racecheck": {
+            "BS": {
+                "e_stats": {
+                    "elapsed": 1071.13720703125
+                },
+                "mean_err": 491.9204835215044,
+                "repetitions": 5,
+                "size": 100
+            },
+            "CP": {
+                "e_stats": {
+                    "elapsed": 2047.1763916015625
+                },
+                "mean_err": null,
+                "repetitions": 5,
+                "size": 100
+            },
+            "DA": {
+                "e_stats": {
+                    "elapsed": 1026.6671142578125
+                },
+                "mean_err": 491.9204835215044,
+                "repetitions": 5,
+                "size": 100
+            },
+            "DL": {
+                "e_stats": {
+                    "elapsed": 1072.8128662109375
+                },
+                "mean_err": 491.9204835215044,
+                "repetitions": 5,
+                "size": 100
+            },
+            "OP": {
+                "e_stats": {
+                    "elapsed": 126.04788970947266
+                },
+                "mean_err": 491.9204835215044,
+                "repetitions": 5,
+                "size": 100
+            },
+            "RL": {
+                "e_stats": {
+                    "elapsed": 1096.183349609375
+                },
+                "mean_err": 491.9204835215044,
+                "repetitions": 5,
+                "size": 100
+            },
+            "RM": {
+                "e_stats": {
+                    "elapsed": 1083.2965087890625
+                },
+                "mean_err": 491.9204835215044,
+                "repetitions": 5,
+                "size": 100
+            },
+            "YL": {
+                "e_stats": {
+                    "elapsed": 1063.540771484375
+                },
+                "mean_err": null,
+                "repetitions": 5,
+                "size": 100
+            }
+        },
+        "initcheck": {
+            "BS": {
+                "e_stats": {
+                    "elapsed": 34.949188232421875
+                },
+                "mean_err": 76589327.2658648,
+                "repetitions": 5,
+                "size": 100
+            },
+            "CP": {
+                "e_stats": {
+                    "elapsed": 106.17889404296875
+                },
+                "mean_err": 2.4819450249532995,
+                "repetitions": 5,
+                "size": 100
+            },
+            "DA": {
+                "e_stats": {
+                    "elapsed": 34.232215881347656
+                },
+                "mean_err": 76589327.2658648,
+                "repetitions": 5,
+                "size": 100
+            },
+            "DL": {
+                "e_stats": {
+                    "elapsed": 33.74694061279297
+                },
+                "mean_err": 76589327.2658648,
+                "repetitions": 5,
+                "size": 100
+            },
+            "OP": {
+                "e_stats": {
+                    "elapsed": 47.72831344604492
+                },
+                "mean_err": 76589327.2658648,
+                "repetitions": 5,
+                "size": 100
+            },
+            "RL": {
+                "e_stats": {
+                    "elapsed": 62.00939178466797
+                },
+                "mean_err": 76589327.2658648,
+                "repetitions": 5,
+                "size": 100
+            },
+            "RM": {
+                "e_stats": {
+                    "elapsed": 32.35099411010742
+                },
+                "mean_err": 76589327.2658648,
+                "repetitions": 5,
+                "size": 100
+            },
+            "YL": {
+                "e_stats": {
+                    "elapsed": 33.06773376464844
+                },
+                "mean_err": null,
+                "repetitions": 5,
+                "size": 100
+            }
+        },
+        "synccheck": {
+            "BS": {
+                "e_stats": {
+                    "elapsed": 34.68552780151367
+                },
+                "mean_err": 342428.1087847214,
+                "repetitions": 5,
+                "size": 100
+            },
+            "CP": {
+                "e_stats": {
+                    "elapsed": 100.463134765625
+                },
+                "mean_err": 2.5097162351390185,
+                "repetitions": 5,
+                "size": 100
+            },
+            "DA": {
+                "e_stats": {
+                    "elapsed": 34.29816436767578
+                },
+                "mean_err": 342428.1087847214,
+                "repetitions": 5,
+                "size": 100
+            },
+            "DL": {
+                "e_stats": {
+                    "elapsed": 33.20524978637695
+                },
+                "mean_err": 342428.1087847214,
+                "repetitions": 5,
+                "size": 100
+            },
+            "OP": {
+                "e_stats": {
+                    "elapsed": 44.717159271240234
+                },
+                "mean_err": 342428.1087847214,
+                "repetitions": 5,
+                "size": 100
+            },
+            "RL": {
+                "e_stats": {
+                    "elapsed": 61.636009216308594
+                },
+                "mean_err": 342428.1087847214,
+                "repetitions": 5,
+                "size": 100
+            },
+            "RM": {
+                "e_stats": {
+                    "elapsed": 34.33553695678711
+                },
+                "mean_err": 342428.1087847214,
+                "repetitions": 5,
+                "size": 100
+            },
+            "YL": {
+                "e_stats": {
+                    "elapsed": 34.83546829223633
+                },
+                "mean_err": null,
+                "repetitions": 5,
+                "size": 100
+            }
+        }
+    }
+}

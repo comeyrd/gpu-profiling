@@ -22,6 +22,7 @@ gpu_profiler = "gpu_profiler.cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
+package-data = {"gpu_profiler.config" = ["*.yaml"]}
 
 [tool.setuptools.packages.find]
 where = ["src"]
